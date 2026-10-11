@@ -11,6 +11,12 @@ from scenarios import SCENARIOS
 
 st.set_page_config(page_title="Insurance Claim Agent", page_icon="🛡️", layout="wide")
 
+# ============================================================
+# LOAD BANNER
+# ============================================================
+from PIL import Image
+banner = Image.open("banner.png")
+st.image(banner, use_column_width=True)
 
 @st.cache_resource
 def get_graph():
@@ -171,3 +177,20 @@ if "thread_id" in st.session_state:
         if decision:
             graph.invoke(Command(resume={"decision": decision, "notes": notes, "reviewer": "Claims Manager"}), cfg)
             st.rerun()
+
+
+# ============================================================
+# FOOTER
+# ============================================================
+
+st.markdown("---")
+
+st.markdown("""
+<div style='text-align: center;'>
+
+### 🌍 AI Resume Screening Assistant using GenAI & Agentic AI
+
+Built with ❤️ using Streamlit | Developed by nmshah9
+
+</div>
+""", unsafe_allow_html=True)
